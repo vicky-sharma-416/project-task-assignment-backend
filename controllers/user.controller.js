@@ -23,9 +23,16 @@ exports.create = (req, res) => {
     .catch(err => {
       console.log(" -- User Create Error :- ", err);
 
+      let errMessage = err.parent.detail;
+      let searchString = 'Key (email)=';
+
+      if(errMessage && errMessage.includes(searchString)) {
+        errMessage = errMessage.replace(searchString, 'User')
+      }
+
       // In case of duplicate email, it comes under parent object
       res.status(500).send({
-        message: (err.parent.detail || err.message || "Some error occurred while creating the user.")
+        message: (errMessage || err.message || "Some error occurred while creating the user.")
       });
     });
 };

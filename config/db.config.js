@@ -2,7 +2,7 @@ module.exports = {
     HOST: "localhost",
     USER: "postgres",
     PASSWORD: "root",
-    DB: "ataFraight",
+    DB: "ataFraightDemo",
     dialect: "postgres",
     pool: {
       max: 5,
