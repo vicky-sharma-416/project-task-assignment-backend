@@ -37,10 +37,10 @@ require("./routes/login.routes.js")(app);
 app.use(function(req, res, next){
 	if(req.headers && req.headers.authorization) {
 		tokenFileObj.verify(req, function(error, result){
-			// console.log(error, '-- req: ', req);
+			// console.log(error, '-- req: ', result);
 
 			if (error) {
-				res.status(401).end(JSON.stringify({message: result.message}));
+				res.status(401).end(JSON.stringify({message: error.message}));
 			} else {
 				req.decodedToken = result;
 				next();
